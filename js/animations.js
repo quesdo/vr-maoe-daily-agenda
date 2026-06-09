@@ -333,6 +333,18 @@ window.startMainSequence = function(windowsContainer) {
                 // === AUDIO 3 SEQUENCES ===
                 const audio3 = window.audio3;
 
+                // Define toggleVisibility function for showing elements
+                window.toggleVisibility = (elementId, show) => {
+                    const el = document.getElementById(elementId);
+                    if (el) {
+                        el.style.display = show ? 'block' : 'none';
+                        el.style.opacity = show ? '1' : '0';
+                        console.log(`${show ? 'Showing' : 'Hiding'}: ${elementId}`);
+                    } else {
+                        console.warn(`Element not found: ${elementId}`);
+                    }
+                };
+
                 // Sequence 1: [0:00.00 -> 0:07.00] "Here is the type of product" → SHOW Presentation Product
                 setTimeout(() => {
                     console.log('Audio 3 - 0:00: Show Presentation Product');
