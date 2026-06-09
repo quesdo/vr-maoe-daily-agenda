@@ -7,9 +7,13 @@ const windowsContainer = document.getElementById('windows-container');
 const skipBtn = document.getElementById('skip-btn');
 
 // Create Audio elements dynamically (VR compatible)
-const audio1 = new Audio('assets/Audio/Audio 1.mp3');
-const audio2 = new Audio('assets/Audio/audio 2.mp3');
-const audio3 = new Audio('assets/Audio/Audio 3.mp3');
+// Try MP3 first (for VR), fallback to MP4
+const audio1 = new Audio();
+audio1.src = 'Audio 1.mp3';
+const audio2 = new Audio();
+audio2.src = 'audio 2.mp3';
+const audio3 = new Audio();
+audio3.src = 'Audio 3.mp3';
 
 // Logo error fallback
 startLogo.onerror = () => {
