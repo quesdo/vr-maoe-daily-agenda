@@ -12,6 +12,12 @@ window.audio1 = new Audio('Audio 1.mp3');
 window.audio2 = new Audio('audio 2.mp3');
 window.audio3 = new Audio('Audio 3.mp3');
 
+console.log('Audio objects created:', {
+    audio1: window.audio1,
+    audio2: window.audio2,
+    audio3: window.audio3
+});
+
 // Logo error fallback
 startLogo.onerror = () => {
     startLogo.style.display = 'none';

@@ -8,6 +8,12 @@ window.autoStartSequence = function() {
     // Get audio elements created in main.js
     const audio1 = window.audio1;
     const audio2 = window.audio2;
+
+    console.log('autoStartSequence called, audio objects:', {
+        audio1: audio1,
+        audio2: audio2
+    });
+
     const tl = gsap.timeline();
 
     // === PHASE 1: Logo moves to bottom-right and starts pulsing ===
