@@ -314,8 +314,8 @@ window.startMainSequence = function(windowsContainer) {
 
     // === After Audio 2 ends: Wait 2 seconds then launch Audio 3 ===
     tl.add(() => {
-        const audio2 = document.getElementById('audio-2');
-        const audio3 = document.getElementById('audio-3');
+        const audio2 = window.audio2;
+        const audio3 = window.audio3;
 
         audio2.addEventListener('ended', () => {
             console.log('Audio 2 ended, waiting 2 seconds before Audio 3...');
@@ -331,6 +331,7 @@ window.startMainSequence = function(windowsContainer) {
                 audio3.play().catch(e => console.log('Audio 3 play error:', e));
 
                 // === AUDIO 3 SEQUENCES ===
+                const audio3 = window.audio3;
 
                 // Sequence 1: [0:00.00 -> 0:07.00] "Here is the type of product" → SHOW Presentation Product
                 setTimeout(() => {

@@ -3,9 +3,11 @@ window.autoStartSequence = function() {
     const logoContainer = document.getElementById('logo-container');
     const startLogo = document.getElementById('start-logo');
     const startFallback = document.getElementById('start-fallback');
-    const audio1 = document.getElementById('audio-1');
-    const audio2 = document.getElementById('audio-2');
     const windowsContainer = document.getElementById('windows-container');
+
+    // Get audio elements created in main.js
+    const audio1 = window.audio1;
+    const audio2 = window.audio2;
     const tl = gsap.timeline();
 
     // === PHASE 1: Logo moves to bottom-right and starts pulsing ===
