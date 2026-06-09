@@ -3,13 +3,13 @@ const startScreen = document.getElementById('start-screen');
 const logoContainer = document.getElementById('logo-container');
 const startLogo = document.getElementById('start-logo');
 const startFallback = document.getElementById('start-fallback');
-const audio1 = document.getElementById('audio-1');
-const audio2 = document.getElementById('audio-2');
-const audio3 = document.getElementById('audio-3');
 const windowsContainer = document.getElementById('windows-container');
 const skipBtn = document.getElementById('skip-btn');
 
-// Audio sources are in HTML with fallback formats
+// Create Audio elements dynamically (VR compatible)
+const audio1 = new Audio('assets/Audio/Audio 1.mp3');
+const audio2 = new Audio('assets/Audio/audio 2.mp3');
+const audio3 = new Audio('assets/Audio/Audio 3.mp3');
 
 // Logo error fallback
 startLogo.onerror = () => {
