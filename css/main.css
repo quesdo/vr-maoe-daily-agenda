@@ -1,0 +1,305 @@
+/* RESET & BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: transparent;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+}
+
+/* START SCREEN */
+#start-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background: transparent;
+}
+
+#start-screen.hidden {
+    display: none;
+}
+
+#logo-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#skip-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1001;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+}
+
+#skip-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+#skip-btn:active {
+    transform: scale(0.95);
+}
+
+/* WINDOWS CONTAINER */
+#windows-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1400px;
+    height: 750px;
+    opacity: 1;
+    z-index: 100;
+    display: block;
+}
+
+#windows-container.show {
+    opacity: 1;
+    display: block;
+}
+
+.app-window {
+    opacity: 1 !important;
+}
+
+/* SVG LINES */
+#lines-svg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 45;
+}
+
+#lines-svg line {
+    stroke-width: 2.5; stroke-dasharray: 6 3; opacity: 0;
+    filter: drop-shadow(0 0 3px currentColor);
+}
+
+/* DATA LABELS */
+.data-label {
+    position: absolute;
+    font-size: 0.6rem;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    z-index: 55;
+    pointer-events: none;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* COMPUTATION */
+#computation-display {
+    position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%);
+    width: 280px; text-align: left; opacity: 0; z-index: 48; pointer-events: none;
+}
+
+.computation-line {
+    font-size: 0.62rem; color: rgba(255,255,255,0.85);
+    font-family: 'Courier New', monospace; margin-bottom: 3px; opacity: 0;
+}
+
+/* ANALYSIS ZONE */
+#analysis-zone {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    z-index: 50;
+}
+
+#analysis-zone img {
+    width: 140px; height: 140px; object-fit: contain; margin-bottom: 12px;
+}
+
+#analysis-zone .analysis-text {
+    color: #fff; font-size: 1rem; font-weight: 300;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.pulse-ring {
+    position: absolute; top: 20px; left: 50%;
+    transform: translateX(-50%);
+    width: 140px; height: 140px; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.4); opacity: 0;
+}
+
+/* AGENDA */
+#agenda-container {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    width: 720px; opacity: 0; z-index: 60;
+}
+
+#agenda-container h2 {
+    color: #fff; font-size: 1.3rem; font-weight: 300;
+    margin-bottom: 12px; text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.agenda-block {
+    background: rgba(255,255,255,0.95); border-radius: 10px;
+    padding: 12px 18px; margin-bottom: 8px;
+    display: flex; align-items: flex-start; gap: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    opacity: 0; transform: translateY(20px);
+}
+
+.agenda-block .time-badge {
+    background: #005B9F; color: #fff; padding: 4px 10px;
+    border-radius: 20px; font-size: 0.78rem; font-weight: 600; white-space: nowrap;
+}
+
+.agenda-block .agenda-info h4 { font-size: 0.85rem; color: #333; margin-bottom: 3px; }
+
+.agenda-block .agenda-info .reason { font-size: 0.72rem; color: #005B9F; font-style: italic; }
+
+.agenda-more { text-align: center; color: rgba(255,255,255,0.8); font-size: 0.82rem; margin-top: 6px; opacity: 0; }
+
+/* POPUP OVERLAY */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 1999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.popup-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* EMAIL POPUPS */
+.email-popup {
+    position: fixed;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    z-index: 2000;
+    max-width: 450px;
+    max-height: 70vh;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* Position each popup differently */
+#email-popup-1 {
+    top: 15%;
+    left: 5%;
+    z-index: 2002;
+    transform: scale(0.8) rotate(-5deg);
+}
+
+#email-popup-2 {
+    top: 30%;
+    right: 8%;
+    z-index: 2001;
+    transform: scale(0.8) rotate(3deg);
+}
+
+#email-popup-3 {
+    bottom: 10%;
+    left: 35%;
+    z-index: 2000;
+    transform: scale(0.8) rotate(-2deg);
+}
+
+.email-popup.show {
+    display: block !important;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#email-popup-1.show {
+    transform: scale(1) rotate(-5deg);
+}
+
+#email-popup-2.show {
+    transform: scale(1) rotate(3deg);
+}
+
+#email-popup-3.show {
+    transform: scale(1) rotate(-2deg);
+}
+
+.popup-header {
+    color: #fff;
+    padding: 20px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.popup-close {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.popup-close:hover {
+    transform: scale(1.2);
+}
+
+.popup-content {
+    padding: 20px;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.popup-content p {
+    margin: 10px 0;
+}
+
+.popup-content hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 15px 0;
+}
+
+.popup-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.popup-content ul li {
+    padding: 5px 0 5px 25px;
+    position: relative;
+}
+
+.popup-content ul li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #3498DB;
+}

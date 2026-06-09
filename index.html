@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Agenda</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+    <div id="start-screen">
+        <div id="logo-container">
+            <img src="assets/images/logo.png" alt="IA" id="start-logo" style="width: 200px; height: 200px; object-fit: contain; margin-bottom: 30px; cursor: pointer;">
+            <div id="start-fallback" style="display:none; width:200px; height:200px; background:#005B9F; border-radius:50%; align-items:center; justify-content:center; margin-bottom: 30px; cursor: pointer;">
+                <span style="color:#fff; font-size:4rem; font-weight:700;">IA</span>
+            </div>
+            <p style="color: #fff; font-size: 1rem; margin-top: 20px; opacity: 0.8;">Cliquer pour commencer</p>
+            <audio id="audio-1" style="display: none;">
+                <source src="assets/Audio/Audio 1.mp3" type="audio/mpeg">
+                <source src="assets/Audio/Audio 1.mp4" type="audio/mp4">
+            </audio>
+            <audio id="audio-2" style="display: none;">
+                <source src="assets/Audio/audio 2.mp3" type="audio/mpeg">
+                <source src="assets/Audio/audio 2.mp4" type="audio/mp4">
+            </audio>
+            <audio id="audio-3" style="display: none;">
+                <source src="assets/Audio/Audio 3.mp3" type="audio/mpeg">
+                <source src="assets/Audio/Audio 3.mp4" type="audio/mp4">
+            </audio>
+        </div>
+        <button id="skip-btn">⏭ Skip to animation</button>
+    </div>
+
+    <div id="windows-container">
+        <!-- OUTLOOK -->
+        <div class="app-window" id="win-outlook">
+            <div class="window-titlebar outlook-bar">
+                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                Outlook — Boîte de réception (12 non lus)
+            </div>
+            <div class="outlook-content">
+                <div class="outlook-sidebar">
+                    <div class="icon-placeholder"></div>
+                    <div class="icon-placeholder"></div>
+                    <div class="icon-placeholder"></div>
+                    <div class="icon-placeholder"></div>
+                </div>
+                <div class="outlook-list" id="outlook-email-list">
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Sophie Chen</div><div class="subject">Welcome to the team!</div><div class="preview">Bienvenue dans l'entreprise...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Marc Durand</div><div class="subject">Welcome aboard!</div><div class="preview">Glad to have you on board...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Isabelle Moreau</div><div class="subject">Welcome to Engineering!</div><div class="preview">Let's sync up next week...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Jean Petit</div><div class="subject">Welcome to Sales!</div><div class="preview">Excited to have you join...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Marie Laurent</div><div class="subject">Welcome to Marketing!</div><div class="preview">Let's discuss your first project...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Pierre Blanc</div><div class="subject">Welcome to Finance!</div><div class="preview">Great to have you join us...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Anne Rousseau</div><div class="subject">Welcome aboard!</div><div class="preview">Looking forward to working with you...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Thomas Lefevre</div><div class="subject">Welcome to Operations!</div><div class="preview">Let me show you around...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Lucie Martin</div><div class="subject">Welcome to HR!</div><div class="preview">Welcome aboard to the team...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">David Mercier</div><div class="subject">Welcome to IT!</div><div class="preview">Great to have you here...</div></div>
+                    <div class="outlook-email priority hidden-until-chaos" id="email-1">
+                        <div class="sender">Sales Director</div>
+                        <div class="subject">THREAT ALERT — New market competitor analysis</div>
+                        <div class="preview">I've identified a new actor on the market. Urgent analysis in Supply Virtual Twin...</div>
+                    </div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Emma Girard</div><div class="subject">Welcome to the team!</div><div class="preview">Happy to see you join...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Nicolas Bernard</div><div class="subject">Welcome aboard!</div><div class="preview">Looking forward to your contributions...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Catherine Dumont</div><div class="subject">Welcome to Design!</div><div class="preview">Let's create something great...</div></div>
+                    <div class="outlook-email priority hidden-until-chaos" id="email-2">
+                        <div class="sender">VP Production</div>
+                        <div class="subject">Beijing Factory Virtual Twin — Gemba Prep</div>
+                        <div class="preview">Virtual twin of our factory updated. Ready for next Friday's Gemba walk...</div>
+                    </div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Francois Leclerc</div><div class="subject">Welcome to Supply Chain!</div><div class="preview">Welcome aboard...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Sylvie Renaud</div><div class="subject">Welcome to Customer Success!</div><div class="preview">Great to have you...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Andre Lefebvre</div><div class="subject">Welcome to the team!</div><div class="preview">Welcome aboard...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Monique Arnaud</div><div class="subject">Welcome to Quality!</div><div class="preview">Looking forward to working with you...</div></div>
+                    <div class="outlook-email priority hidden-until-chaos" id="email-3">
+                        <div class="sender">VP Finance</div>
+                        <div class="subject">Business Performance Review — Key insights</div>
+                        <div class="preview">Performance metrics for specific business units. Strategic review needed...</div>
+                    </div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Laurent Gauthier</div><div class="subject">Welcome to Legal!</div><div class="preview">Welcome aboard...</div></div>
+                    <div class="outlook-email welcome-email" style="display:none;"><div class="sender">Veronique Chevalier</div><div class="subject">Welcome to Administration!</div><div class="preview">Great to have you join us...</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXCEL -->
+        <div class="app-window" id="win-excel">
+            <div class="window-titlebar excel-bar">
+                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                Excel — Planning_Livrables_Q3.xlsx
+            </div>
+            <div class="excel-content">
+                <div class="excel-toolbar">
+                    <span>Accueil</span><span>Insertion</span><span>Mise en page</span><span>Formules</span><span>Données</span>
+                </div>
+                <div class="excel-formula"><span>fx</span> =SI(D2&lt;AUJOURDHUI();"En retard";"OK")</div>
+                <div class="excel-grid">
+                    <div class="excel-cell header"></div>
+                    <div class="excel-cell header">A</div>
+                    <div class="excel-cell header">B</div>
+                    <div class="excel-cell header">C</div>
+                    <div class="excel-cell header">D</div>
+                    <div class="excel-cell header">E</div>
+                    <div class="excel-cell header">F</div>
+
+                    <div class="excel-cell row-header">1</div>
+                    <div class="excel-cell" style="font-weight:600;">Livrable</div>
+                    <div class="excel-cell" style="font-weight:600;">Responsable</div>
+                    <div class="excel-cell" style="font-weight:600;">Équipe</div>
+                    <div class="excel-cell" style="font-weight:600;">Deadline</div>
+                    <div class="excel-cell" style="font-weight:600;">Statut</div>
+                    <div class="excel-cell" style="font-weight:600;">Priorité</div>
+
+                    <div class="excel-cell row-header">2</div>
+                    <div class="excel-cell" id="excel-r2a">Rapport financier</div>
+                    <div class="excel-cell">P. Weber</div>
+                    <div class="excel-cell">Finance</div>
+                    <div class="excel-cell" id="excel-r2d" style="color:#D83B01;">Aujourd'hui</div>
+                    <div class="excel-cell" id="excel-r2e" style="color:#D83B01;">En retard</div>
+                    <div class="excel-cell" style="color:#D83B01;">Critique</div>
+
+                    <div class="excel-cell row-header">3</div>
+                    <div class="excel-cell" id="excel-r3a">Specs module B</div>
+                    <div class="excel-cell">L. Chen</div>
+                    <div class="excel-cell">Dev</div>
+                    <div class="excel-cell" id="excel-r3d">Demain</div>
+                    <div class="excel-cell" style="color:#FFA500;">En cours</div>
+                    <div class="excel-cell">Haute</div>
+
+                    <div class="excel-cell row-header">4</div>
+                    <div class="excel-cell">Tests UAT</div>
+                    <div class="excel-cell">S. Morel</div>
+                    <div class="excel-cell">QA</div>
+                    <div class="excel-cell">Vendredi</div>
+                    <div class="excel-cell" style="color:#217346;">Terminé</div>
+                    <div class="excel-cell">Moyenne</div>
+
+                    <div class="excel-cell row-header">5</div>
+                    <div class="excel-cell" id="excel-r5a">Dashboard KPI</div>
+                    <div class="excel-cell">M. Dupont</div>
+                    <div class="excel-cell">BI</div>
+                    <div class="excel-cell" id="excel-r5d">Jeudi</div>
+                    <div class="excel-cell" style="color:#FFA500;">En cours</div>
+                    <div class="excel-cell">Haute</div>
+
+                    <div class="excel-cell row-header">6</div>
+                    <div class="excel-cell">Migration DB</div>
+                    <div class="excel-cell">L. Chen</div>
+                    <div class="excel-cell">Infra</div>
+                    <div class="excel-cell">Lundi +1</div>
+                    <div class="excel-cell" style="color:#FFA500;">80%</div>
+                    <div class="excel-cell">Haute</div>
+
+                    <div class="excel-cell row-header">7</div>
+                    <div class="excel-cell">Démo client</div>
+                    <div class="excel-cell">P. Weber</div>
+                    <div class="excel-cell">Produit</div>
+                    <div class="excel-cell">Jeudi</div>
+                    <div class="excel-cell" style="color:#0078D4;">Planifié</div>
+                    <div class="excel-cell">Moyenne</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEAMS, ONEDRIVE, PLANNER (complète le HTML du fichier original) -->
+        <!-- ... (par manque de place, je vais les ajouter dans le dossier) -->
+
+        <!-- TEAMS -->
+        <div class="app-window" id="win-teams">
+            <div class="window-titlebar teams-bar">
+                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                Teams — Calendrier du jour
+            </div>
+            <div class="teams-content">
+                <div class="teams-sidebar">
+                    <div class="t-icon"></div>
+                    <div class="t-icon"></div>
+                    <div class="t-icon"></div>
+                    <div class="t-icon"></div>
+                    <div class="t-icon"></div>
+                </div>
+                <div class="teams-meetings">
+                    <h3>Mardi 13 mai — 6 réunions</h3>
+                    <div class="teams-meeting" id="meeting-1">
+                        <div><div class="time">09:00</div></div>
+                        <div class="m-info"><div class="title">Daily Stand-up</div><div class="attendees">Équipe Produit — 8 participants</div><div class="duration">15 min</div></div>
+                    </div>
+                    <div class="teams-meeting" id="meeting-2">
+                        <div><div class="time">10:00</div></div>
+                        <div class="m-info"><div class="title">Revue Architecture</div><div class="attendees">T. Martin, L. Chen, S. Morel, P. Weber</div><div class="duration">1h</div></div>
+                    </div>
+                    <div class="teams-meeting" id="meeting-3">
+                        <div><div class="time">11:30</div></div>
+                        <div class="m-info"><div class="title">Sync Design System</div><div class="attendees">UX Team — 4 participants</div><div class="duration">30 min</div></div>
+                    </div>
+                    <div class="teams-meeting" id="meeting-4">
+                        <div><div class="time">14:00</div></div>
+                        <div class="m-info"><div class="title">Point Budget Q3</div><div class="attendees">M. Dupont, Direction, Finance</div><div class="duration">1h</div></div>
+                    </div>
+                    <div class="teams-meeting" id="meeting-5">
+                        <div><div class="time">15:30</div></div>
+                        <div class="m-info"><div class="title">Sprint Planning</div><div class="attendees">Dev Team — 12 participants</div><div class="duration">1h30</div></div>
+                    </div>
+                    <div class="teams-meeting" id="meeting-6">
+                        <div><div class="time">17:00</div></div>
+                        <div class="m-info"><div class="title">1:1 Manager</div><div class="attendees">N. Bernard</div><div class="duration">30 min</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONEDRIVE -->
+        <div class="app-window" id="win-onedrive">
+            <div class="window-titlebar onedrive-bar">
+                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                OneDrive — Projets / Q3-2025
+            </div>
+            <div class="onedrive-content">
+                <div class="onedrive-breadcrumb">Mes fichiers &gt; Projets &gt; Q3-2025 &gt; Livrables</div>
+                <div class="onedrive-file" id="file-1">
+                    <div class="file-icon doc">W</div>
+                    <div class="file-name">CR_Atelier_Architecture_v2.docx</div>
+                    <div class="file-date">Hier, 17:42</div>
+                    <div class="file-size">2.4 Mo</div>
+                </div>
+                <div class="onedrive-file" id="file-2">
+                    <div class="file-icon xls">X</div>
+                    <div class="file-name">Budget_Q3_v4_FINAL.xlsx</div>
+                    <div class="file-date">Hier, 14:10</div>
+                    <div class="file-size">890 Ko</div>
+                </div>
+                <div class="onedrive-file" id="file-3">
+                    <div class="file-icon ppt">P</div>
+                    <div class="file-name">Presentation_Comite_Direction.pptx</div>
+                    <div class="file-date">Lun, 09:30</div>
+                    <div class="file-size">15.2 Mo</div>
+                </div>
+                <div class="onedrive-file" id="file-4">
+                    <div class="file-icon pdf">PDF</div>
+                    <div class="file-name">Specs_Module_B_v3_Final.pdf</div>
+                    <div class="file-date">Lun, 08:15</div>
+                    <div class="file-size">4.1 Mo</div>
+                </div>
+                <div class="onedrive-file" id="file-5">
+                    <div class="file-icon doc">W</div>
+                    <div class="file-name">Notes_Sprint_Review_46.docx</div>
+                    <div class="file-date">Ven, 16:00</div>
+                    <div class="file-size">1.1 Mo</div>
+                </div>
+                <div class="onedrive-file" id="file-6">
+                    <div class="file-icon img">▪</div>
+                    <div class="file-name">Mockup_Dashboard_KPI.png</div>
+                    <div class="file-date">Ven, 11:20</div>
+                    <div class="file-size">3.8 Mo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PLANNER -->
+        <div class="app-window" id="win-planner">
+            <div class="window-titlebar planner-bar">
+                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                Planner — Sprint Q3-S4
+            </div>
+            <div class="planner-content">
+                <div class="planner-column">
+                    <h4>À faire (4)</h4>
+                    <div class="planner-task urgent" id="task-1">
+                        Relecture specs Module B
+                        <div class="task-meta">Priorité haute • Aujourd'hui</div>
+                    </div>
+                    <div class="planner-task urgent" id="task-2">
+                        Valider rapport financier
+                        <div class="task-meta">Critique • Aujourd'hui</div>
+                    </div>
+                    <div class="planner-task" id="task-3">
+                        Préparer démo client
+                        <div class="task-meta">Moyenne • Jeudi</div>
+                    </div>
+                    <div class="planner-task" id="task-4">
+                        Rédiger ADR migration
+                        <div class="task-meta">Basse • Vendredi</div>
+                    </div>
+                </div>
+                <div class="planner-column">
+                    <h4>En cours (3)</h4>
+                    <div class="planner-task progress" id="task-5">
+                        Dashboard KPI v2
+                        <div class="task-meta">60% • M. Dupont</div>
+                    </div>
+                    <div class="planner-task progress" id="task-6">
+                        Migration base données
+                        <div class="task-meta">80% • L. Chen</div>
+                    </div>
+                    <div class="planner-task progress" id="task-7">
+                        Refacto API auth
+                        <div class="task-meta">40% • S. Morel</div>
+                    </div>
+                </div>
+                <div class="planner-column">
+                    <h4>Fait (2)</h4>
+                    <div class="planner-task done">
+                        Tests intégration API
+                        <div class="task-meta">Hier</div>
+                    </div>
+                    <div class="planner-task done">
+                        Revue PR #234
+                        <div class="task-meta">Hier</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SVG LINES -->
+    <svg id="lines-svg">
+        <line id="line-1" class="line-red" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-2" class="line-yellow" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-3" class="line-blue" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-4" class="line-green" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-5" class="line-purple" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-6" class="line-yellow" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-7" class="line-blue" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-8" class="line-red" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-9" class="line-green" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-10" class="line-purple" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-11" class="line-white" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-12" class="line-white" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-13" class="line-white" x1="0" y1="0" x2="0" y2="0"/>
+        <line id="line-14" class="line-white" x1="0" y1="0" x2="0" y2="0"/>
+    </svg>
+
+    <!-- DATA LABELS -->
+    <div class="data-label dl-red" id="dl-1">URGENT</div>
+    <div class="data-label dl-blue" id="dl-2">corrélation</div>
+    <div class="data-label dl-purple" id="dl-3">feedback</div>
+    <div class="data-label dl-red" id="dl-4">deadline J</div>
+    <div class="data-label dl-purple" id="dl-5">dépendance</div>
+    <div class="data-label dl-blue" id="dl-6">architecture</div>
+    <div class="data-label dl-yellow" id="dl-7">budget lié</div>
+    <div class="data-label dl-yellow" id="dl-8">fichier maj.</div>
+    <div class="data-label dl-red" id="dl-9">critique</div>
+    <div class="data-label dl-blue" id="dl-10">KPI lié</div>
+    <div class="data-label dl-green" id="dl-11">récurrent</div>
+
+    <!-- COMPUTATION -->
+    <div id="computation-display">
+        <div class="computation-line">▸ Analyse des priorités...</div>
+        <div class="computation-line">▸ Détection des conflits horaires...</div>
+        <div class="computation-line">▸ Corrélation emails ↔ réunions...</div>
+        <div class="computation-line">▸ Calcul des dépendances...</div>
+        <div class="computation-line">▸ Optimisation séquentielle...</div>
+        <div class="computation-line">▸ Génération de l'agenda...</div>
+    </div>
+
+    <!-- ANALYSIS ZONE -->
+    <div id="analysis-zone">
+        <div class="pulse-ring" id="pulse-1"></div>
+        <div class="pulse-ring" id="pulse-2"></div>
+        <div class="pulse-ring" id="pulse-3"></div>
+        <img src="assets/images/logo.png" alt="IA" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div style="display:none; width:140px; height:140px; background:#005B9F; border-radius:50%; align-items:center; justify-content:center; margin: 0 auto 12px;">
+            <span style="color:#fff; font-size:3rem; font-weight:700;">IA</span>
+        </div>
+        <div class="analysis-text">Analyse en cours...</div>
+    </div>
+
+    <!-- POPUP OVERLAY -->
+    <div id="popup-overlay" class="popup-overlay"></div>
+
+    <!-- EMAIL POPUPS -->
+    <div id="email-popup-1" class="email-popup">
+        <div class="popup-header" style="background: #E74C3C;">
+            <span class="popup-close">✕</span>
+            <h3>THREAT ALERT</h3>
+        </div>
+        <div class="popup-content">
+            <p><strong>From:</strong> Sales Director</p>
+            <p><strong>Subject:</strong> New market competitor analysis</p>
+            <hr>
+            <p>I've identified a new actor on the market that represents a significant threat to us. This competitor has entered with an aggressive strategy.</p>
+            <p><strong>Full analysis available in:</strong> Supply Virtual Twin</p>
+            <p style="margin-top: 15px; font-size: 0.85rem; color: #666;">📊 Analysis includes market positioning, pricing strategy, and competitive advantages</p>
+        </div>
+    </div>
+
+    <div id="email-popup-2" class="email-popup">
+        <div class="popup-header" style="background: #3498DB;">
+            <span class="popup-close">✕</span>
+            <h3>FACTORY VIRTUAL TWIN</h3>
+        </div>
+        <div class="popup-content">
+            <p><strong>From:</strong> VP Production</p>
+            <p><strong>Subject:</strong> Beijing Factory Virtual Twin — Gemba Prep</p>
+            <hr>
+            <p>Virtual twin of our factory in Beijing has been updated and is ready for inspection.</p>
+            <p><strong>Purpose:</strong> Preparation for Gemba walk next Friday</p>
+            <p><strong>What's included:</strong></p>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Production line layout</li>
+                <li>Equipment status</li>
+                <li>Efficiency metrics</li>
+                <li>Real-time monitoring</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="email-popup-3" class="email-popup">
+        <div class="popup-header" style="background: #8E44AD;">
+            <span class="popup-close">✕</span>
+            <h3>PERFORMANCE REVIEW</h3>
+        </div>
+        <div class="popup-content">
+            <p><strong>From:</strong> VP Finance</p>
+            <p><strong>Subject:</strong> Business Performance Review — Key insights</p>
+            <hr>
+            <p>Business performance review for specific business units with strategic insights.</p>
+            <p><strong>Key Metrics:</strong></p>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Revenue trends</li>
+                <li>Cost analysis</li>
+                <li>Unit profitability</li>
+                <li>Market share</li>
+                <li>Growth forecast</li>
+            </ul>
+            <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">⚠️ Strategic review needed before Q4 planning</p>
+        </div>
+    </div>
+
+    <!-- AGENDA -->
+    <div id="agenda-container">
+        <h2>Votre agenda optimisé</h2>
+        <div class="agenda-block" id="agenda-1">
+            <div class="time-badge">08:30</div>
+            <div class="agenda-info">
+                <h4>Finaliser le rapport financier</h4>
+                <div class="reason">Deadline aujourd'hui (Excel) + email urgent M. Dupont + tâche Planner critique</div>
+            </div>
+        </div>
+        <div class="agenda-block" id="agenda-2">
+            <div class="time-badge">09:00</div>
+            <div class="agenda-info">
+                <h4>Daily Stand-up</h4>
+                <div class="reason">Réunion récurrente — préparer point specs Module B (feedback Sophie + OneDrive maj. hier)</div>
+            </div>
+        </div>
+        <div class="agenda-block" id="agenda-3">
+            <div class="time-badge">09:30</div>
+            <div class="agenda-info">
+                <h4>Relire CR Atelier + préparer Revue Architecture</h4>
+                <div class="reason">Revue à 10h (Teams) + CR OneDrive + email Thomas + specs Module B liées</div>
+            </div>
+        </div>
+        <div class="agenda-block" id="agenda-4">
+            <div class="time-badge">13:30</div>
+            <div class="agenda-info">
+                <h4>Valider le budget avec Marie Dupont</h4>
+                <div class="reason">Point Budget à 14h (Teams) + Budget_Q3_v4 modifié hier + email urgent Marie avant 14h</div>
+            </div>
+        </div>
+        <div class="agenda-more">... et 4 autres tâches optimisées pour votre journée</div>
+    </div>
+
+    <script src="js/sequence.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
