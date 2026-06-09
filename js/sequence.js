@@ -47,11 +47,15 @@ window.autoStartSequence = function() {
     tl.add(() => {
         return new Promise((resolve) => {
             const onEnded = () => {
-                console.log('Audio 1 finished, waiting 2 seconds...');
+                console.log('🎵 Audio 1 finished, waiting 2 seconds...');
                 audio1.removeEventListener('ended', onEnded);
                 setTimeout(() => {
-                    console.log('Starting Audio 2 and main sequence...');
-                    audio2.play().catch(e => console.log('Audio 2 play error:', e));
+                    console.log('🎵 NOW Starting Audio 2 and main sequence...');
+                    audio2.play().then(() => {
+                        console.log('✅ Audio 2 is PLAYING');
+                    }).catch(e => {
+                        console.log('❌ Audio 2 play error:', e);
+                    });
 
                     window.startMainSequence(windowsContainer);
                     resolve();

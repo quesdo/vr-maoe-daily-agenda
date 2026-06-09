@@ -317,10 +317,11 @@ window.startMainSequence = function(windowsContainer) {
     const audio2 = window.audio2;
     const audio3 = window.audio3;
 
+    console.log('🎵 Registering Audio 2 ended listener...');
     audio2.addEventListener('ended', () => {
-        console.log('Audio 2 ended, waiting 2 seconds before Audio 3...');
+        console.log('🎵 Audio 2 ENDED! Waiting 2 seconds before Audio 3...');
         setTimeout(() => {
-            console.log('Launching Audio 3...');
+            console.log('🎵 NOW launching Audio 3...');
             // Close all popups
             document.querySelectorAll('.email-popup.show').forEach(popup => {
                 popup.classList.remove('show');
@@ -328,7 +329,11 @@ window.startMainSequence = function(windowsContainer) {
             document.getElementById('popup-overlay').classList.remove('show');
 
             // Launch Audio 3
-            audio3.play().catch(e => console.log('Audio 3 play error:', e));
+            audio3.play().then(() => {
+                console.log('✅ Audio 3 is PLAYING');
+            }).catch(e => {
+                console.log('❌ Audio 3 play error:', e);
+            });
 
             // === AUDIO 3 SEQUENCES ===
 
