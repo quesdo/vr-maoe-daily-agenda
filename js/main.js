@@ -72,6 +72,36 @@ document.getElementById('popup-overlay').addEventListener('click', () => {
     overlay.classList.remove('show');
 });
 
+// Test button - toggle visibility of elements
+let testState = 0;
+document.getElementById('test-btn').addEventListener('click', () => {
+    testState = (testState + 1) % 4;
+
+    const toggleVisibility = window.toggleVisibility || ((id, show) => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.style.display = show ? 'block' : 'none';
+            el.style.opacity = show ? '1' : '0';
+        }
+    });
+
+    if (testState === 0) {
+        console.log('Test: Hide all');
+        toggleVisibility('Presentation_Product', false);
+        toggleVisibility('Context', false);
+        toggleVisibility('Content', false);
+    } else if (testState === 1) {
+        console.log('Test: Show Presentation_Product');
+        toggleVisibility('Presentation_Product', true);
+    } else if (testState === 2) {
+        console.log('Test: Show Context');
+        toggleVisibility('Context', true);
+    } else if (testState === 3) {
+        console.log('Test: Show Content');
+        toggleVisibility('Content', true);
+    }
+});
+
 // Toggle visibility function for 3D actors
 window.toggleVisibility = function(actorName, visible) {
     window.parent.postMessage(JSON.stringify({
