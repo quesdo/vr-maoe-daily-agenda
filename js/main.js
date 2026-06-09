@@ -97,8 +97,8 @@ document.getElementById('test-btn').addEventListener('click', () => {
         console.log('Test: Show Context');
         toggleVisibility('Context', true);
     } else if (testState === 3) {
-        console.log('Test: Show Content');
-        toggleVisibility('Content', true);
+        console.log('Test: Show Content hide for gemba');
+        toggleVisibility('Content hide for gemba', true);
     }
 });
 

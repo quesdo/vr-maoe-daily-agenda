@@ -357,10 +357,10 @@ window.startMainSequence = function(windowsContainer) {
                     window.toggleVisibility('Context', true);
                 }, 13000); // 11 seconds into audio 3
 
-                // Sequence 3: [0:26.00 -> 0:31.20] "Here is the current location" → SHOW Content
+                // Sequence 3: [0:26.00 -> 0:31.20] "Here is the current location" → SHOW Content hide for gemba
                 setTimeout(() => {
-                    console.log('Audio 3 - 0:26: Show Content');
-                    window.toggleVisibility('Content', true);
+                    console.log('Audio 3 - 0:26: Show Content hide for gemba');
+                    window.toggleVisibility('Content hide for gemba', true);
                 }, 28000); // 26 seconds into audio 3
             }, 2000);
         }, { once: true });
