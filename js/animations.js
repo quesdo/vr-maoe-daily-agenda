@@ -313,25 +313,24 @@ window.startMainSequence = function(windowsContainer) {
     tl.to('.agenda-more', { opacity: 1, duration: 0.5 }, '+=0.2');
 
     // === After Audio 2 ends: Wait 2 seconds then launch Audio 3 ===
-    tl.add(() => {
-        const audio2 = window.audio2;
-        const audio3 = window.audio3;
+    // Don't use timeline for this - register directly on audio element
+    const audio2 = window.audio2;
+    const audio3 = window.audio3;
 
-        audio2.addEventListener('ended', () => {
-            console.log('Audio 2 ended, waiting 2 seconds before Audio 3...');
-            setTimeout(() => {
-                console.log('Launching Audio 3...');
-                // Close all popups
-                document.querySelectorAll('.email-popup.show').forEach(popup => {
-                    popup.classList.remove('show');
-                });
-                document.getElementById('popup-overlay').classList.remove('show');
+    audio2.addEventListener('ended', () => {
+        console.log('Audio 2 ended, waiting 2 seconds before Audio 3...');
+        setTimeout(() => {
+            console.log('Launching Audio 3...');
+            // Close all popups
+            document.querySelectorAll('.email-popup.show').forEach(popup => {
+                popup.classList.remove('show');
+            });
+            document.getElementById('popup-overlay').classList.remove('show');
 
-                // Launch Audio 3
-                audio3.play().catch(e => console.log('Audio 3 play error:', e));
+            // Launch Audio 3
+            audio3.play().catch(e => console.log('Audio 3 play error:', e));
 
-                // === AUDIO 3 SEQUENCES ===
-                const audio3 = window.audio3;
+            // === AUDIO 3 SEQUENCES ===
 
                 // Define toggleVisibility function for showing elements
                 window.toggleVisibility = (elementId, show) => {
@@ -362,7 +361,6 @@ window.startMainSequence = function(windowsContainer) {
                     console.log('Audio 3 - 0:26: Show Content hide for gemba');
                     window.toggleVisibility('Content hide for gemba', true);
                 }, 28000); // 26 seconds into audio 3
-            }, 2000);
-        }, { once: true });
-    }, '+=1');
+        }, 2000);
+    }, { once: true });
 };
