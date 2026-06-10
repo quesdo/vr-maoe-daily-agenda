@@ -337,16 +337,14 @@ window.startMainSequence = function(windowsContainer) {
 
             // === AUDIO 3 SEQUENCES ===
 
-                // Define toggleVisibility function for showing elements
-                window.toggleVisibility = (elementId, show) => {
-                    const el = document.getElementById(elementId);
-                    if (el) {
-                        el.style.display = show ? 'block' : 'none';
-                        el.style.opacity = show ? '1' : '0';
-                        console.log(`${show ? 'Showing' : 'Hiding'}: ${elementId}`);
-                    } else {
-                        console.warn(`Element not found: ${elementId}`);
-                    }
+                // Define toggleVisibility function for showing 3D elements (via postMessage to Babylon)
+                window.toggleVisibility = (actorName, show) => {
+                    console.log(`🎬 toggleVisibility: ${actorName} = ${show}`);
+                    window.parent.postMessage(JSON.stringify({
+                        action: "toggleVisibility",
+                        actor: actorName,
+                        visible: show
+                    }), "*");
                 };
 
                 // Sequence 1: [0:00.00 -> 0:07.00] "Here is the type of product" → SHOW Presentation Product
